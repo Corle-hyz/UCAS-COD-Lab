@@ -61,7 +61,7 @@ assign Result = {32{op_and}}	&	{A&B}	|
 				{32{op_sl}}		&	{A<<B} | 
 				{32{op_sra}}	&	{({{32{A[31]}},A}>>B)} |
 				{32{op_xor}}	&	(A^B)	|
-				{32{op_nor}}	&	(A^~B)	|
+				{32{op_nor}}	&	(~(A|B))	|
 				{32{op_sltu}}	&	{(A[`DATA_WIDTH - 1]^B[`DATA_WIDTH - 1])?~(res[`DATA_WIDTH - 1]^sub_of):(res[`DATA_WIDTH - 1]^sub_of)};
 assign Zero = Result==0?1:0;//Big NOR
 assign {Overflow,CarryOut} = (op_add)?{add_of,cf}:{sub_of,!cf};
